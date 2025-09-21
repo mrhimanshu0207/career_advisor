@@ -1,9 +1,19 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
-# 🔑 Add your OpenAI API Key here
-openai.api_key = st.secrets["OPENAI_API_KEY"]
-st.set_page_config(page_title="AI Career & Skills Advisor", page_icon="🎓", layout="centered")
+# Load environment variables (for local testing, not needed on Streamlit Cloud if using st.secrets)
+load_dotenv()
+
+# 🔑 Initialize OpenAI client with key
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+st.set_page_config(
+    page_title="AI Career & Skills Advisor",
+    page_icon="🎓",
+    layout="centered"
+)
 
 st.title("🎓 AI Career & Skills Advisor")
 st.markdown("Your personalized AI buddy for career paths and skill growth 🚀")
@@ -31,11 +41,11 @@ if st.button("Get My Career Advice"):
             4. A 3-step actionable roadmap to start today
             """
 
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=500
             )
 
             st.subheader("📌 Personalized Career Guidance")
-            st.write(response["choices"][0]["message"]["content"])
+            st.write(response.choices[0].message.content)
