@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 
 # 🔑 Add your OpenAI API Key here
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 st.set_page_config(page_title="AI Career & Skills Advisor", page_icon="🎓", layout="centered")
 
 st.title("🎓 AI Career & Skills Advisor")
