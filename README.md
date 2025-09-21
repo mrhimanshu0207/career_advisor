@@ -31,7 +31,7 @@ career_advisor/
 
 ⚡ Quick Start
 1️⃣ Clone the repo
-git clone https://github.com/your-username/ai-career-advisor.git
+git clone https://mrhimanshu0207.github.io/career_advisor/
 cd ai-career-advisor
 
 2️⃣ Install dependencies
